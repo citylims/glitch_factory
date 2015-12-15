@@ -1,0 +1,9 @@
+GEM
+  specs:
+    pnglitch (0.0.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  pnglitch
