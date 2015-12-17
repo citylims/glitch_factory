@@ -1,6 +1,6 @@
 require 'pnglitch'
 
-PNGlitch.open('source_png/nwa.png') do |p|
+PNGlitch.open('../source_png/nwa.png') do |p|
   p.each_scanline do |scanline|
     scanline.gsub! /\d/, 'x'
     scanline.change_filter 4
@@ -8,6 +8,6 @@ PNGlitch.open('source_png/nwa.png') do |p|
   p.glitch do |data|
     data.gsub /\d/, '2'
   end
-  p.save 'glitch_png/scanline_filter.png'
+  p.save '../glitch_png/scanline_filter.png'
   puts p.filter_types
 end

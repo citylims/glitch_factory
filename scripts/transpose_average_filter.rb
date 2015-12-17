@@ -1,6 +1,6 @@
 require 'pnglitch'
 
-PNGlitch.open('source_png/NWA.png') do |p|
+PNGlitch.open('../source_png/NWA.png') do |p|
   p.change_all_filters 3
   p.each_scanline do |l|
     l.register_filter_encoder do |data, prev|
@@ -12,5 +12,5 @@ PNGlitch.open('source_png/NWA.png') do |p|
       data
     end
   end
-  p.output 'glitch_png/transpose_average_filter.png'
+  p.output '../glitch_png/transpose_average_filter.png'
 end

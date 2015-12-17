@@ -1,6 +1,6 @@
 require 'pnglitch'
 
-PNGlitch.open('source_png/Chapterhouse.png') do |p|
+PNGlitch.open('../source_png/Chapterhouse.png') do |p|
   p.change_all_filters 2
   p.each_scanline do |l|
     l.register_filter_encoder do |data, prev|
@@ -12,5 +12,5 @@ PNGlitch.open('source_png/Chapterhouse.png') do |p|
       data
     end
   end
-  p.save 'glitch_png/byte_filter.png'
+  p.save '../glitch_png/byte_filter.png'
 end

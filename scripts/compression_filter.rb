@@ -1,6 +1,6 @@
 require 'pnglitch'
 
-PNGlitch.open('source_png/NWA.png') do |p|
+PNGlitch.open('../source_png/NWA.png') do |p|
   scanlines = Array.new
   p.glitch do |data|
     data.gsub /\e/, 'x'
@@ -15,5 +15,5 @@ PNGlitch.open('source_png/NWA.png') do |p|
     scanlines << s
   end
   puts scanlines.at(0)
-  p.save 'glitch_png/compression_filter.png'
+  p.save '../glitch_png/compression_filter.png'
 end
