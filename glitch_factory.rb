@@ -43,7 +43,7 @@ def glitch_factory(path, filter, method)
     # define new file
     outfile = "NWA-#{count}-#{options}.png"
     puts outfile
-    # process methodes
+    # assign methods
     process = lambda do |data, range|
       case method
       when :replace
