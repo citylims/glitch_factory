@@ -1,7 +1,7 @@
 require 'pnglitch'
 
 filters = [:optimized, :sub, :up, :average, :paeth]
-methods = [:replace, :transpose, :defect]
+methods = [:replace, :transpose, :defect, :graft]
 
 # consider using ARGV
 def set_params(filters, methods)
@@ -18,7 +18,7 @@ def set_params(filters, methods)
   method = methods[gets.chomp().to_i]
   puts "You selected Filter: #{filter}, and Method: #{method}. Y/N"
   cta = gets.chomp();
-  if cta = "Y"
+  if cta.upcase == "Y"
     glitch_factory(path, filter, method)
   else
     return
@@ -28,6 +28,9 @@ end
 def glitch_factory(path, filter, method)
   count = 0
   [false, true].each do |compress|
+    if compress && :graft
+      return
+    end
     count += 1
     # png instance
     png = PNGlitch.open path
@@ -37,9 +40,10 @@ def glitch_factory(path, filter, method)
     options = [filter.to_s]
     options << method.to_s
     options << 'compress' if compress
-    puts options
+    # define new file
     outfile = "NWA-#{count}-#{options}.png"
-    # call glitch method
+    puts outfile
+    # process methodes
     process = lambda do |data, range|
       case method
       when :replace
@@ -55,17 +59,28 @@ def glitch_factory(path, filter, method)
           data[rand(data.size)] = ''
         end
         data
+      when :graft
+        png.each_scanline do |line|
+          line.graft rand(range)
+        end
+        png
       end
     end
+    # process png
     unless compress
-      png.glitch do |data|
-        process.call data, 50
+      if method == :graft
+        process.call png, 5
+      else
+        png.glitch do |data|
+          process.call data, 50
+        end
       end
     else
       png.glitch_after_compress do |data|
         process.call data, 10
       end
     end
+    ##save png
     png.save outfile
     png.close
   end
