@@ -28,7 +28,7 @@ end
 def glitch_factory(path, filter, method)
   count = 0
   [false, true].each do |compress|
-    if compress && :graft
+    if compress && method == :graft
       return
     end
     count += 1
