@@ -1,3 +1,9 @@
-Example scripts for png file glitch
+## Gltich Ruby
+Re-write, destroy, and filter
+.png input, .png output
 
-gem install pnglitch
+```ruby
+  gem install pnglitch 
+  bundle
+  ruby glitch_factory.rb
+```
