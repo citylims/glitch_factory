@@ -7,19 +7,38 @@ methods = [:replace, :transpose, :defect, :graft]
 def set_params(filters, methods)
   puts "Input path to png file:"
   path = gets.chomp()
-  puts "Select Filter"
+  if (path == "" || path.length <= 4)
+    puts "...invalid path"
+    return
+  end
+  puts "Select Filter:"
   filters.each_with_index do |filter, index|
-    puts "#{index}. #{filter}"
+    puts "#{index + 1}. #{filter}"
   end
-  filter = filters[gets.chomp().to_i]
+  selection = gets.chomp().to_i
+  filter = filters[selection - 1]
+  if (selection > filters.length)
+    puts "...invalid filter"
+    return
+  end
+  puts "Select Method:"
   methods.each_with_index do |filter, index|
-    puts "#{index}. #{filter}"
+    puts "#{index + 1}. #{filter}"
   end
-  method = methods[gets.chomp().to_i]
+  selection = gets.chomp().to_i
+  method = methods[selection - 1]
+  if (selection > methods.length)
+    puts "...invalid filter"
+    return
+  end
   puts "You selected Filter: #{filter}, and Method: #{method}. Y/N"
   cta = gets.chomp();
   if cta.upcase == "Y"
-    glitch_factory(path, filter, method)
+    if (path && filter && method)
+      glitch_factory(path, filter, method)
+    else
+      puts "Sorry mate"
+    end
   else
     return
   end
