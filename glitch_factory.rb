@@ -4,6 +4,7 @@ filters = [:optimized, :sub, :up, :average, :paeth]
 methods = [:replace, :transpose, :defect, :graft]
 
 # consider using ARGV
+# this is so not DRY
 def set_params(filters, methods)
   puts "Input path to png file:"
   path = gets.chomp()
@@ -60,7 +61,7 @@ def glitch_factory(path, filter, method)
     options << method.to_s
     options << 'compress' if compress
     # define new file
-    outfile = "NWA-#{count}-#{options}.png"
+    outfile = "#{path}-#{count}-#{options}.png"
     puts outfile
     # assign methods
     process = lambda do |data, range|
@@ -85,7 +86,7 @@ def glitch_factory(path, filter, method)
         png
       end
     end
-    # process png
+    # process png output
     unless compress
       if method == :graft
         process.call png, 5
