@@ -7,3 +7,5 @@ Re-write, destroy, and filter
   bundle
   ruby glitch_factory.rb
 ```
+
+![GitHub Logo](https://github.com/citylims/glitch_factory/blob/master/glitch_png/example.png?raw=true)
