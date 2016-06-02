@@ -3,8 +3,6 @@ require 'pnglitch'
 filters = [:optimized, :sub, :up, :average, :paeth]
 methods = [:replace, :transpose, :defect, :graft]
 
-# consider using ARGV
-# this is so not DRY
 def set_params(filters, methods)
   puts "Input path to png file:"
   path = gets.chomp()
