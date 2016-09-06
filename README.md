@@ -1,4 +1,4 @@
-## Gltich Factory
+## Glitch Factory
 Re-write, destroy, and filter
 .png input, .png output
 
